@@ -25,7 +25,7 @@ export function LoginForm({
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [identificacion, setIdentificacion] = useState();
+  const [identificacion, setIdentificacion] = useState<number>();
 
   const router = useRouter();
 
@@ -44,7 +44,10 @@ export function LoginForm({
         .from("academia")
         .select("*")
         .eq("identification_number", identificacion)
-        .single(); // single lanza error si hay 0 o más de 1 resultado
+        .single(); 
+
+        console.log(error);
+        console.log(data);
 
       // if (error) throw error;
       router.push("/protected");
@@ -78,7 +81,8 @@ export function LoginForm({
                   placeholder="1000000000"
                   required
                   value={identificacion}
-                  onChange={(e) => setIdentificacion(e.target.value)}
+                 onChange={(e) => setIdentificacion(Number(e.target.value))}
+
                 />
               </div>
               {/* <div className="grid gap-2">
