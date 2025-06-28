@@ -25,6 +25,8 @@ export function LoginForm({
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [identificacion, setIdentificacion] = useState();
+
   const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -66,12 +68,12 @@ export function LoginForm({
               <div className="grid gap-2">
                 <Label htmlFor="email">Número de identificación</Label>
                 <Input
-                  id="email"
-                  type="email"
+                  id="identificacion"
+                  type="number"
                   placeholder="1000000000"
                   required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={identificacion}
+                  onChange={(e) => setIdentificacion(e.target.value)}
                 />
               </div>
               {/* <div className="grid gap-2">
