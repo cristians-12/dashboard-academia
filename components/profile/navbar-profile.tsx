@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { AuthButton } from "../auth-button";
+import { useUserStore } from "@/store/user";
 
 interface Props {
   data: {
@@ -7,14 +9,20 @@ interface Props {
   };
 }
 
+// const { user } = useUserStore();
+
 export default function ProfileNavbar({ data }: Props) {
   return (
-    <header className="py-5 flex justify-between w-full">
-      <figure className="flex items-center gap-10">
-        <img className="w-16 rounded-full" src={data?.avatar_url} alt="" />
+    <header className="py-2 flex justify-between w-full">
+      <Link href={"/protected/profile"} className="flex items-center gap-10">
+        <img
+          className="w-16 rounded-full h-16 object-cover"
+          src={data?.avatar_url}
+          alt=""
+        />
         <span>Hola, {data?.full_name}</span>
         {/* <h2>{JSON.stringify(data)}</h2> */}
-      </figure>
+      </Link>
 
       <AuthButton />
     </header>
