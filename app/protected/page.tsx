@@ -1,15 +1,23 @@
 import { redirect } from "next/navigation";
-
 import { createClient } from "@/lib/supabase/server";
 import { InfoIcon } from "lucide-react";
 import { FetchDataSteps } from "@/components/tutorial/fetch-data-steps";
+import InfoForm from "@/components/profile/info-form";
 
 export default async function ProtectedPage() {
   const supabase = await createClient();
 
   const { data, error } = await supabase.auth.getUser();
-  if (error || !data?.user) {
-    redirect("/auth/login");
+
+  const uid = data.user && data.user.id;
+
+  const { data: academiaData, error: academiaError } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("id", uid);
+
+  if (academiaError) {
+    console.error("Error al obtener academia:", academiaError.message);
   }
 
   return (
@@ -17,18 +25,22 @@ export default async function ProtectedPage() {
       <div className="w-full">
         <div className="bg-accent text-sm p-3 px-5 rounded-md text-foreground flex gap-3 items-center">
           <InfoIcon size="16" strokeWidth={2} />
-          En esta pagina podras realizar registro de tus horas y ver cuantas llevas en todo el mes acumuladas.
+          En esta página podrás registrar tus horas y ver cuántas llevas
+          acumuladas en el mes.
         </div>
       </div>
+
       <div className="flex flex-col gap-2 items-start">
-        <h2 className="font-bold text-2xl mb-4">Your user details</h2>
-        <pre className="text-xs font-mono p-3 rounded border max-h-32 overflow-auto">
-          {JSON.stringify(data.user, null, 2)}
-        </pre>
-      </div>
-      <div>
-        <h2 className="font-bold text-2xl mb-4">Next steps</h2>
-        <FetchDataSteps />
+        {academiaData && academiaData.length > 0 ? (
+          <div>
+            <h2>Bienvenido {academiaData[0]?.full_name || "Usuario"}</h2>
+          </div>
+        ) : (
+          <>
+            <p>Necesitamos tu informacion.</p>
+            <InfoForm />
+          </>
+        )}
       </div>
     </div>
   );
