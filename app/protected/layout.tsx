@@ -21,7 +21,7 @@ export default async function ProtectedLayout({
 
   const uid = data.user.id;
 
-  const { data: academiaData, error: academiaError } = await supabase
+  const { data: profileData, error: academiaError } = await supabase
     .from("profiles")
     .select("*")
     .eq("id", uid);
@@ -35,7 +35,9 @@ export default async function ProtectedLayout({
         <nav className="w-full flex py-5 justify-center border-b border-b-foreground/10 h-16">
           <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
             {/* {!hasEnvVars ? <EnvVarWarning /> : <AuthButton />} */}
-            <ProfileNavbar data={academiaData && academiaData[0]} />
+            {profileData && profileData?.length > 0 ? (
+              <ProfileNavbar data={profileData && profileData[0]} />
+            ) : null}
           </div>
         </nav>
         <div className="flex-1 flex flex-col gap-20 max-w-5xl p-5">
