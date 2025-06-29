@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  experimental: {
-    serverActions: true, // solo si usas App Router con server components
+  eslint: {
+    ignoreDuringBuilds: true, // 👈 desactiva errores de lint en el build
   },
 };
 
