@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useUserStore } from "@/store/user";
 import { createClient } from "@/lib/supabase/client";
+import { useWorkHoursStore } from "@/store/work_hours";
 
 interface UserData {
   id: string;
@@ -22,16 +23,16 @@ export function UserStoreInitializer({ user }: Props) {
     setUser(user);
   }, [user, setUser]);
 
-  return null; // Este componente no renderiza nada
+  return null;
 }
 
-// Hook personalizado para cargar datos del usuario
 export function useLoadUserData() {
   const { setUser, user } = useUserStore();
+  const { setWorkHours, workHours } = useWorkHoursStore();
 
   useEffect(() => {
     const loadUserData = async () => {
-      if (user) return; // Ya tenemos datos
+      if (user) return; 
 
       try {
         const supabase = createClient();
@@ -44,12 +45,23 @@ export function useLoadUserData() {
           return;
         }
 
-        // Obtener datos del perfil
         const { data: profile } = await supabase
           .from("profiles")
           .select("full_name, avatar_url")
           .eq("id", authUser.id)
           .single();
+
+        const { data: horas_trabajo, error } = await supabase
+          .from("horas_trabajo")
+          .select("*")
+          .eq("user_id", authUser.id)
+          .order("created_at", { ascending: false });
+
+        if (error) {
+          console.error("Error al obtener horas de trabajo:", error.message);
+        }
+
+        setWorkHours(horas_trabajo || []);
 
         if (authUser) {
           setUser({
