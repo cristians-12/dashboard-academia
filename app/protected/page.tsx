@@ -34,7 +34,7 @@ export default async function ProtectedPage() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 items-start">
+      <div className="flex flex-col gap-2 items-start px-1">
         {academiaData && academiaData.length > 0 ? (
           <>
             <h2>Bienvenido, {academiaData[0]?.full_name || "Usuario"}</h2>

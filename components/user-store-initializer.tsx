@@ -32,7 +32,7 @@ export function useLoadUserData() {
 
   useEffect(() => {
     const loadUserData = async () => {
-      if (user) return; 
+      if (user) return;
 
       try {
         const supabase = createClient();

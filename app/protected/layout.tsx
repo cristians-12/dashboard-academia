@@ -30,7 +30,7 @@ export default async function ProtectedLayout({
   }
   return (
     <main className="min-h-screen flex flex-col items-center">
-      <div className="flex-1 w-full flex flex-col gap-20 items-center">
+      <div className="flex-1 w-full max-w-4xl mx-auto flex flex-col gap-20 items-center">
         <nav className="w-full flex justify-between border-b border-b-foreground/10">
           <div className="w-full flex justify-between items-center px-5 text-sm">
             {/* {!hasEnvVars ? <EnvVarWarning /> : <AuthButton />} */}
@@ -39,9 +39,7 @@ export default async function ProtectedLayout({
             ) : null}
           </div>
         </nav>
-        <div className="flex-1 flex flex-col gap-20 max-w-5xl">
-          {children}
-        </div>
+        <div className="flex flex-col w-full">{children}</div>
       </div>
     </main>
   );
