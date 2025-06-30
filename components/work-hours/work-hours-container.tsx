@@ -40,13 +40,17 @@ export default function WorkHoursContainer() {
                   })}
                 </td>
                 <td className="px-4 py-2 border">
-                  {new Date(
-                    `1970-01-01T${element.hora_salida}`
-                  ).toLocaleTimeString("es-ES", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    hour12: true,
-                  })}
+                  {isNaN(
+                    new Date(`1970-01-01T${element.hora_salida}`).getTime()
+                  )
+                    ? "No hay hora de salida"
+                    : new Date(
+                        `1970-01-01T${element.hora_salida}`
+                      ).toLocaleTimeString("es-ES", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: true,
+                      })}
                 </td>
                 <td className="px-4 py-2 border">{element.horas_trabajadas}</td>
               </tr>

@@ -88,7 +88,7 @@ export default function SwitchHourButton() {
     <>
       <div
         style={{
-          backgroundColor: isEntrada ? "green" : "red",
+          backgroundColor: isEntrada ? "lighgray" : "darkred",
         }}
         onClick={handleClick}
         className="text-white w-fit mx-auto px-10 py-3 rounded-xl font-bold cursor-pointer"
