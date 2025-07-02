@@ -6,6 +6,7 @@ import InfoForm from "@/components/profile/info-form";
 import SwitchHourButton from "@/components/switch-button";
 import UserStoreLoader from "@/components/user-store-loader";
 import WorkHoursContainer from "@/components/work-hours/work-hours-container";
+import { DropdownMenu } from "@/components/ui/dropdown-menu";
 
 export default async function ProtectedPage() {
   const supabase = await createClient();
@@ -25,6 +26,7 @@ export default async function ProtectedPage() {
 
   return (
     <div className="flex-1 w-full flex flex-col gap-12">
+      <DropdownMenu />
       <UserStoreLoader />
       <div className="w-full">
         <div className="bg-accent text-sm p-3 px-5 rounded-md text-foreground flex gap-3 items-center">

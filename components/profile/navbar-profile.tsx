@@ -14,7 +14,7 @@ interface Props {
 export default function ProfileNavbar({ data }: Props) {
   return (
     <header className="py-2 flex justify-between w-full">
-      <Link href={"/protected/profile"} className="flex items-center gap-10">
+      <Link href={"/protected/profile"} className="flex items-center md:gap-10 gap-5">
         <img
           className="w-16 rounded-full h-16 object-cover"
           src={data?.avatar_url}

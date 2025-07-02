@@ -24,11 +24,12 @@ export default function WorkHoursContainer() {
             {workHours.map((element) => (
               <tr key={element.id} className="text-center">
                 <td className="px-4 py-2 border">
-                  {new Date(element.created_at).toLocaleString("es-ES", {
+                  {/* {new Date(element.created_at).toLocaleString("es-CO", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
-                  })}
+                  })} */}
+                  {element.created_at.split("T")[0]}
                 </td>
                 <td className="px-4 py-2 border">
                   {new Date(

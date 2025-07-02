@@ -197,7 +197,7 @@ export default function InfoForm({ initialData }: Props) {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-full max-w-md mx-auto p-6">
+    <div className="flex flex-col justify-center items-center w-full mx-auto">
       <form onSubmit={handleSubmit} className="w-full space-y-6">
         {/* Área de subida de foto */}
         <div className="flex flex-col items-center space-y-4">

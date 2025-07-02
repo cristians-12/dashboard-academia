@@ -26,10 +26,14 @@ export default function SwitchHourButton() {
     const now = new Date();
 
     // Obtener la hora local (formato hh:mm)
-    const hora = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const hora = now.toLocaleTimeString("es-CO", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
 
     // Obtener la fecha local (formato yyyy-mm-dd)
-    const fecha = now.toLocaleDateString('en-CA'); // 'en-CA' es para formato ISO: yyyy-mm-dd
+    const fecha = now.toLocaleDateString("en-CA");
 
     const supabase = createClient();
 
