@@ -4,6 +4,20 @@ import { useWorkHoursStore } from "@/store/work_hours";
 export default function WorkHoursContainer() {
   const { workHours } = useWorkHoursStore();
 
+  const formatDate = (date: string) => {
+    const rawDate = new Date(date);
+  
+    // Asegura que la fecha es correcta usando UTC
+    const formatedDate = rawDate.toLocaleDateString("es-ES", {
+      timeZone: "UTC",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  
+    return formatedDate;
+  };
+
   return (
     <div className="overflow-x-auto w-full max-w-full">
       {workHours.length === 0 ? (
@@ -29,7 +43,8 @@ export default function WorkHoursContainer() {
                     month: "long",
                     day: "numeric",
                   })} */}
-                  {element.created_at.split("T")[0]}
+                  {/* {element.created_at.split("T")[0]} */}
+                  {formatDate(element.created_at)}
                 </td>
                 <td className="px-4 py-2 border">
                   {new Date(
