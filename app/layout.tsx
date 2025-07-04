@@ -10,7 +10,7 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Dashboard",
+  title: "Dashboard Academia",
   description: "The fastest way to build apps with Next.js and Supabase",
 };
 
@@ -27,6 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/013/941/317/non_2x/initial-letter-a-academy-logo-vector.jpg" type="image/png" />
+      </head>
       <body className={`${geistSans.className} antialiased`}>
         <ThemeProvider
           attribute="class"
