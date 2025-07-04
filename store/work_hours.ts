@@ -17,6 +17,10 @@ interface WorkHoursStore {
 
 export const useWorkHoursStore = create<WorkHoursStore>((set) => ({
   workHours: [],
-  setWorkHours: (workHours) => set({ workHours }),
+  setWorkHours: (workHours: WorkHour[]) => set({ workHours }),
   clearWorkHours: () => set({ workHours: [] }),
+  addWorkHour: (workHour: WorkHour) =>
+    set((state) => ({
+      workHours: [...state.workHours, workHour],
+    })),
 }));

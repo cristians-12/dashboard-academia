@@ -55,7 +55,7 @@ export function useLoadUserData() {
           .from("horas_trabajo")
           .select("*")
           .eq("user_id", authUser.id)
-          .order("created_at", { ascending: false });
+          .order("created_at", { ascending: true });
 
         if (error) {
           console.error("Error al obtener horas de trabajo:", error.message);
